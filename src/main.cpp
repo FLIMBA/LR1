@@ -25,41 +25,50 @@ using namespace std;
 #define COL 5
 
 using namespace std;
+// Ctrl + .
 
-int main()
-{
-	//setlocale(LC_ALL, "")
-	//setlocale(0, "Russian");
-	char s1[80], s2[80];
-	int k = 0, k1 = 0, k2 = 0, i;
-	// ввод строк с клавиатуры
-	cout << "\nstr1->"; fgets(s1, 80, stdin);
-	cout << "\nstr2->";	fgets(s2, 80, stdin);
-	// определение длины строк
-	cout << "Длина строки 1: " << strlen(s1) << endl;
-	cout << "Длина строки 2: " << strlen(s2) << endl;
-	// сравнение строк	
-	if (!strcmp(s1, s2)) cout << "Строки равны" << endl;
-	else {
-		cout << "Строки не равны: ";
-		if (strcmp(s1, s2) > 0) cout << "cтрока1 больше строки2" << endl;
-		else cout << "cтрока2 больше строки1" << endl;
-	}
-	// объединение строк
-	strcat(s1, s2);
-	printf("%s\n", strcat(s1, s2));
-	// поиск эталона-символа в строке
-	if (strchr(s1, '!')) cout << "! есть в " << s1 << endl;
-	cout << "символ р  строит на " << (strchr(s1, 'р') - s1 + 1) << " месте" << endl;
-	// поиск эталона-строки в строке
-	if (strstr(s1, "ро")) cout << "ро есть в " << s1 << endl;
-	// копирование
-	strncpy(s1, s2, 3);	// копируем 3 символа из s2 в s1	
-	strcpy(s2, "Копирование!");
-	cout << "s1:  " << s1 << endl;
-	cout << "s2:  " << s2 << endl;
-	return 0;
+int l = 0;
+
+int main(){
+    printf("Введите длину слова"); scanf("%d", &l);
+    printf();
 }
+
+
+// int main()
+// {
+// 	//setlocale(LC_ALL, "")
+// 	//setlocale(0, "Russian");
+// 	char s1[80], s2[80];
+// 	int k = 0, k1 = 0, k2 = 0, i;
+// 	// ввод строк с клавиатуры
+// 	cout << "\nstr1->"; fgets(s1, 80, stdin);
+// 	cout << "\nstr2->";	fgets(s2, 80, stdin);
+// 	// определение длины строк
+// 	cout << "Длина строки 1: " << strlen(s1) << endl;
+// 	cout << "Длина строки 2: " << strlen(s2) << endl;
+// 	// сравнение строк	
+// 	if (!strcmp(s1, s2)) cout << "Строки равны" << endl;
+// 	else {
+// 		cout << "Строки не равны: ";
+// 		if (strcmp(s1, s2) > 0) cout << "cтрока1 больше строки2" << endl;
+// 		else cout << "cтрока2 больше строки1" << endl;
+// 	}
+// 	// объединение строк
+// 	strcat(s1, s2);
+// 	printf("%s\n", strcat(s1, s2));
+// 	// поиск эталона-символа в строке
+// 	if (strchr(s1, '!')) cout << "! есть в " << s1 << endl;
+// 	cout << "символ р  строит на " << (strchr(s1, 'р') - s1 + 1) << " месте" << endl;
+// 	// поиск эталона-строки в строке
+// 	if (strstr(s1, "ро")) cout << "ро есть в " << s1 << endl;
+// 	// копирование
+// 	strncpy(s1, s2, 3);	// копируем 3 символа из s2 в s1	
+// 	strcpy(s2, "Копирование!");
+// 	cout << "s1:  " << s1 << endl;
+// 	cout << "s2:  " << s2 << endl;
+// 	return 0;
+// }
 
 /*
 int main() {
