@@ -36,10 +36,8 @@ const int DLINA = 1000;
 char s[DLINA];
 int Klow = 0;
 int word_l = 0;
-int word_c = 0;
-int word_in = 0;
-int word_ik = 0;
-int word_leng = 0;
+int str_len = 4; 
+int kol_str = 2;
 
 
 int main(int argc, char* argv[])
@@ -54,48 +52,54 @@ int main(int argc, char* argv[])
 	// устанавливаем указатель p на начало массива text
 	// цикл ввода заканчиваем, когда введена пустая строка
 	// после записи очередной строки перемещаем указатель (+ длина строки)
-	for (p = text, k = 0; q[0] != '#' && q[1] != '\n'; p = p + len + 1, k++)
+	getchar();
+	
+	for (p = text, k = 0; ; p = p + len + 1, k++)
 	{
-		fgets(q, sizeof(q), stdin);		// ввод строки с клавиатуры
-		//printf("%s", q);
+		//fgets(q, sizeof(q), stdin);		// ввод строки с клавиатуры 
+		cin.getline(q, sizeof(q));
+		if(q[0] == '#'){
+			break;
+		}
+		q[strcspn(q, "\0")] = ' ';
 		strcpy(p, q); 	// копирование в text
 		len = strlen(q);	// определение длины строки
 		comlen += len;	// общая длина текста
 	}
-	/*cout << "k=" << k << endl;
-	cout << "comlen=" << comlen << endl;*/
 
+	// for (p = text, k = 0; q[0] != '#' && q[1] != '\n'; p = p + len + 1, k++)
+	// {
+	// 	//fgets(q, sizeof(q), stdin);		// ввод строки с клавиатуры 
+	// 	cin.getline(q, sizeof(q));
+	// 	//printf("%s", q); 
+	// 	strcpy(p, q); 	// копирование в text
+	// 	q[strcspn(q, "\n")] = '\0';
+	// 	len = strlen(q);	// определение длины строки
+	// 	comlen += len;	// общая длина текста
+	// }
+	
 
-	text[strcspn(text, "\n")] = '\0';
-	//========= посимвольная работа с текстом
-	for (i = 0; i < comlen; i++)
+	for (i = 0; i < comlen; i++){
 		if (islower(text[i])) {
 			Klow++;
 		}
 		//cout << text[i];
+	}
 	printf("Кол-во строчных букв: %d", Klow);
 	cout << endl;
 	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l));
 	cout << endl;
-	
-	int k_s = 0;
-	int k_sim = 0;
-	k_s = comlen / STR_L;
-	k_sim = comlen % STR_L;
-	
-
-	//========= построчная работа с текстом
-	for (i = 0, p = text; i < k; i++)
-	{
-		if (k_s < PAGE_L) {
-			
+	//vuvod stroki
+	for (int i = 0, cnt = 0; i < comlen; i++){
+		if (i==0 || cnt%kol_str == 0){
+			printf("page №: %d \n", cnt/kol_str);
 		}
-		//strcpy(q, p);
-		//puts(q);
-		p = p + strlen(q) + 1;
+		if(i < str_len - 1){
+			printf("%c", text[i]);
+		}
+		else printf("\n");
+		cnt++;
 	}
-
-
 	return 0;
 }
 
