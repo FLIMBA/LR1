@@ -18,77 +18,199 @@
 #include <cstring>
 #include <array>
 #include <cstdio>
-
-using namespace std;
-
-#define SIZE 20 
-#define COL 5
+//#include "../.h/stroki.h"
+#include <stroki.h>
 
 using namespace std;
 // Ctrl + .
 
-int l = 0;
+#define SIZE 20 
+#define COL 5
+#define LENGTH 1024
+const int PAGE_L = 10;
+const int STR_L = 10;
 
-int main(){
-    printf("Введите длину слова"); scanf("%d", &l);
-    printf();
-}
 
 
-// int main()
-// {
-// 	//setlocale(LC_ALL, "")
-// 	//setlocale(0, "Russian");
-// 	char s1[80], s2[80];
-// 	int k = 0, k1 = 0, k2 = 0, i;
-// 	// ввод строк с клавиатуры
-// 	cout << "\nstr1->"; fgets(s1, 80, stdin);
-// 	cout << "\nstr2->";	fgets(s2, 80, stdin);
-// 	// определение длины строк
-// 	cout << "Длина строки 1: " << strlen(s1) << endl;
-// 	cout << "Длина строки 2: " << strlen(s2) << endl;
-// 	// сравнение строк	
-// 	if (!strcmp(s1, s2)) cout << "Строки равны" << endl;
-// 	else {
-// 		cout << "Строки не равны: ";
-// 		if (strcmp(s1, s2) > 0) cout << "cтрока1 больше строки2" << endl;
-// 		else cout << "cтрока2 больше строки1" << endl;
-// 	}
-// 	// объединение строк
-// 	strcat(s1, s2);
-// 	printf("%s\n", strcat(s1, s2));
-// 	// поиск эталона-символа в строке
-// 	if (strchr(s1, '!')) cout << "! есть в " << s1 << endl;
-// 	cout << "символ р  строит на " << (strchr(s1, 'р') - s1 + 1) << " месте" << endl;
-// 	// поиск эталона-строки в строке
-// 	if (strstr(s1, "ро")) cout << "ро есть в " << s1 << endl;
-// 	// копирование
-// 	strncpy(s1, s2, 3);	// копируем 3 символа из s2 в s1	
-// 	strcpy(s2, "Копирование!");
-// 	cout << "s1:  " << s1 << endl;
-// 	cout << "s2:  " << s2 << endl;
-// 	return 0;
-// }
+const int DLINA = 1000;
+char s[DLINA];
+int Klow = 0;
+int word_l = 0;
+int word_c = 0;
+int word_in = 0;
+int word_ik = 0;
+int word_leng = 0;
 
-/*
-int main() {
-	const int k = 1500;	// максимальная сумма массива
-	const int col = 5;	// число колонок при выводе массива
-	int dig[1000], * p, s = 0, i;
-	//массив заполняется, пока его сумма не превышает k
-	for (p = dig; s < k; p++)
+
+int main(int argc, char* argv[])
+{
+	setlocale(0, "Russian");
+	printf("Введите максимальную длинну слова: \t");
+	scanf_s("%d", &word_l);
+	printf("\nМаксимальна длинна слова: %d \n", word_l);
+	char text[1000], q[100], * p;
+	int i, len = 0, comlen = 0, k;
+	// ВВОД ТЕКСТА В МАССИВ  text С КЛАВИАТУРЫ :
+	// устанавливаем указатель p на начало массива text
+	// цикл ввода заканчиваем, когда введена пустая строка
+	// после записи очередной строки перемещаем указатель (+ длина строки)
+	for (p = text, k = 0; q[0] != '#' && q[1] != '\n'; p = p + len + 1, k++)
 	{
-		*p = rand() % 1000;	// запись элемента массива
-		s = s + *p;		// подсчет суммы массива
+		fgets(q, sizeof(q), stdin);		// ввод строки с клавиатуры
+		//printf("%s", q);
+		strcpy(p, q); 	// копирование в text
+		len = strlen(q);	// определение длины строки
+		comlen += len;	// общая длина текста
 	}
-	*p = 1111;	// запись граничного значения
-	// Массив печатается до тех пор, пока элемент не равен 1111.
-	for (i = 0, p = dig; *p != 1111; p++, i++)
+	/*cout << "k=" << k << endl;
+	cout << "comlen=" << comlen << endl;*/
+
+
+	text[strcspn(text, "\n")] = '\0';
+	//========= посимвольная работа с текстом
+	for (i = 0; i < comlen; i++)
+		if (islower(text[i])) {
+			Klow++;
+		}
+		//cout << text[i];
+	printf("Кол-во строчных букв: %d", Klow);
+	cout << endl;
+	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l));
+	cout << endl;
+	
+	int k_s = 0;
+	int k_sim = 0;
+	k_s = comlen / STR_L;
+	k_sim = comlen % STR_L;
+	
+
+	//========= построчная работа с текстом
+	for (i = 0, p = text; i < k; i++)
 	{
-		printf("%d", *p);
-		if ((i + 1) % col) printf("\t");
-		else		  printf("\n");
+		if (k_s < PAGE_L) {
+			
+		}
+		//strcpy(q, p);
+		//puts(q);
+		p = p + strlen(q) + 1;
 	}
+
+
 	return 0;
 }
-*/
+
+
+//int main(int argc, char* argv[]) {
+//	size_t len = 0;
+//	setlocale(0, "Russian");
+//	while (fgets(s, sizeof(s), stdin)) {
+//		len = strlen(s); // or size_t strlen() возвращает длину строки
+//		if (len > 0 && s[len - 1] == '\n') {
+//			s[len - 1] = '\n';
+//		}
+//		if (strcmp(s, "#") == 0) break;
+//		printf("Введённая строка: %s\n", s);
+//	}
+//	for (int i = 0; i < len; i++) {
+//		printf("%s", s);
+//	}
+//	return 0;
+//}
+
+//void initmas(double *p, int n, int i);
+//void printmas(double *p, int n, int k);
+//double summas(double *p, int n);
+//void spec(double p[], int n, int K, double *l);
+//double sumP(double* p, double* tn, double* tk);
+//double sumP1(double* p, int tn, int tv);
+//
+//int main() {
+//	int K = 0;
+//	int* k = &K;
+//	printf("%d", *k);
+//	setlocale(0, "Russian");
+//	//printf("Введите длину массива Y: \t"); //ввести 10
+//	//scanf_s("%d", &R);
+//	K = 10;
+//	double X[SIZE];
+//	double Y[SIZE];
+//	initmas(X, SIZE, 1);	// заполнение массива X
+//	initmas(Y, SIZE, 0);	// заполнение массива Y нулями
+//	printmas(X, SIZE, COL);
+//
+//
+//	spec(Y, SIZE, K, X);
+//	printmas(Y, SIZE, COL);
+//	//double summpred = sumP(X, &X[0], &X[2]);
+//	//printf("\n%lf", summpred);
+//	return 0;
+//}
+//
+//void spec(double p[], int n, int K, double *l) {
+//	double *vrY;
+//	double *vrX;
+//	vrX = l;
+//	for (int i = 0; i < SIZE-K; i++) { //SIZE-K or n-K
+//		p[i] = (sumP1(vrX, i, K + i)/10);
+//		//p[i] = 7.9;
+//	}
+//	/*for (vrY = p; vrY < (p + n); vrY++) {
+//		if (K + g + vrX == SIZE) {
+//			*vrY = (1 / K) * sumP(vrX, g + vrX, K + vrX + g);
+//			g++;
+//		}
+//	}*/
+//}
+//
+//double sumP(double* p, double* tn, double* tk) {
+//	double sm;
+//	double* vr;	// рабочий указатель(локальная переменная)
+//	for (sm = 0, vr = tn; vr <= tk; vr++)
+//		sm = sm + *vr;
+//	return sm;
+//}
+//
+//double sumP1(double* p, int tn, int tv) {
+//	double sm;	
+//	double* vr;	// рабочий указатель(локальная переменная)
+//	for (sm = 0, vr = &p[tn]; vr <= &p[tv] ; vr++)
+//		sm = sm + *vr;	
+//	return sm;	
+//}
+//
+//void initmas(double* p, int n, int i)
+//{
+//	if (i == 1)
+//	{
+//		double* vr;
+//		time_t k;
+//		srand(time(&k));
+//		for (vr = p; vr < (p + n); vr++)
+//			*vr = rand() % 100 / 3.5;
+//	}
+//	if (i == 0) {
+//		double* vr;
+//		for (vr = p; vr < (p + n); vr++)
+//			*vr = 0;
+//	}
+//}
+//
+//void printmas(double* p, int n, int k){
+//	int i;
+//	for (i = 0; i < n; i++, p++)
+//	{
+//		printf("%8.2f", *p);
+//		if ((i + 1) % k) printf("\t");
+//		else		  printf("\n");
+//	}
+//	printf("\n");
+//}
+//
+//double summas(double* p, int n)
+//{
+//	double sm;	//сумма (локальная переменная)
+//	double* vr;	// рабочий указатель(локальная переменная)
+//	for (sm = 0, vr = p; vr < (p + n); vr++)
+//		sm = sm + *vr;	// суммирование массива
+//	return sm;	// возврат суммы в вызывающую программу
+//}

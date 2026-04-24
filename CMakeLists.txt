@@ -8,4 +8,10 @@ project(main
 LANGUAGES CXX
 VERSION 0.0.1
 )
-add_executable(main main.cpp)
+add_executable(main 
+    src/main.cpp
+    src/stroki.cpp
+    inc/stroki.h
+)
+target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+#message("РОМУ 67  --> ${CMAKE_CURRENT_SOURCE_DIR}")
