@@ -36,8 +36,8 @@ const int DLINA = 1000;
 char s[DLINA];
 int Klow = 0;
 int word_l = 0;
-int str_len = 4; 
-int kol_str = 2;
+int str_len = 8; 
+int kol_str = 3;
 
 
 int main(int argc, char* argv[])
@@ -78,7 +78,6 @@ int main(int argc, char* argv[])
 	// 	comlen += len;	// общая длина текста
 	// }
 	
-
 	for (i = 0; i < comlen; i++){
 		if (islower(text[i])) {
 			Klow++;
@@ -87,18 +86,31 @@ int main(int argc, char* argv[])
 	}
 	printf("Кол-во строчных букв: %d", Klow);
 	cout << endl;
-	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l));
+	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l, comlen));
 	cout << endl;
+	//cout << 0%3 << 1%3 << 2%3 << 3%3 << '\n'; // 0 1 2 0
 	//vuvod stroki
-	for (int i = 0, cnt = 0; i < comlen; i++){
-		if (i==0 || cnt%kol_str == 0){
-			printf("page №: %d \n", cnt/kol_str);
+	for (int i = 0, cnt = 1; i < comlen; i++){
+		if (i == 0){
+			printf("\n");
+			printf("page num: %d", 1);
+			printf("\n");
 		}
-		if(i < str_len - 1){
+		if (cnt%kol_str == 0){
+			printf("\n");
+			printf("page num: %d", cnt/kol_str + 1);
+			printf("\n");
+		}
+		if(i < str_len){
 			printf("%c", text[i]);
 		}
-		else printf("\n");
-		cnt++;
+		else if(i == str_len){
+			cnt++;
+			printf("\n");
+		}
+		if(text[i] == '\0' && text[i+1] =='\0'){
+			break;
+		}
 	}
 	return 0;
 }
