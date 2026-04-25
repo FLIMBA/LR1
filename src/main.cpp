@@ -88,30 +88,17 @@ int main(int argc, char* argv[])
 	cout << endl;
 	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l, comlen));
 	cout << endl;
+
+	//testing a%b
 	//cout << 0%3 << 1%3 << 2%3 << 3%3 << '\n'; // 0 1 2 0
+	// int j = 7;
+	// printf("j = %d", (j+1)%str_len); cout << '\n';
+	// j = 15;
+	// printf("j = %d", (j+1)%str_len); cout << '\n';
+	// cout << '\n';
+
 	//vuvod stroki
-	for (int i = 0, cnt = 1; i < comlen; i++){
-		if (i == 0){
-			printf("\n");
-			printf("page num: %d", 1);
-			printf("\n");
-		}
-		if (cnt%kol_str == 0){
-			printf("\n");
-			printf("page num: %d", cnt/kol_str + 1);
-			printf("\n");
-		}
-		if(i < str_len){
-			printf("%c", text[i]);
-		}
-		else if(i == str_len){
-			cnt++;
-			printf("\n");
-		}
-		if(text[i] == '\0' && text[i+1] =='\0'){
-			break;
-		}
-	}
+	print_by_pages(text, str_len, kol_str, comlen);	
 	return 0;
 }
 
