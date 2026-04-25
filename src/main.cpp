@@ -73,6 +73,24 @@ int main(int argc, char* argv[])
 		}
 	}
 
+	for (i = 0; i < comlen; i++){
+		if (islower(text[i])) {
+			Klow++;
+		}
+		//cout << text[i];
+	}
+	
+	printf("Кол-во строчных букв: %d", Klow);
+	cout << endl;
+	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l, comlen));
+	cout << endl;
+
+	//vuvod stroki
+	print_by_pages(text, str_len, kol_str, comlen);	
+	return 0;
+}
+//===============================================================================================//
+
 	// for (p = text, k = 0; q[0] != '#' && q[1] != '\n'; p = p + len + 1, k++)
 	// {
 	// 	//fgets(q, sizeof(q), stdin);		// ввод строки с клавиатуры 
@@ -83,17 +101,6 @@ int main(int argc, char* argv[])
 	// 	len = strlen(q);	// определение длины строки
 	// 	comlen += len;	// общая длина текста
 	// }
-	
-	for (i = 0; i < comlen; i++){
-		if (islower(text[i])) {
-			Klow++;
-		}
-		//cout << text[i];
-	}
-	printf("Кол-во строчных букв: %d", Klow);
-	cout << endl;
-	printf("Кол-во слов > %d: %d", word_l, clwp(text, word_l, comlen));
-	cout << endl;
 
 	//testing a%b
 	//cout << 0%3 << 1%3 << 2%3 << 3%3 << '\n'; // 0 1 2 0
@@ -103,11 +110,7 @@ int main(int argc, char* argv[])
 	// printf("j = %d", (j+1)%str_len); cout << '\n';
 	// cout << '\n';
 
-	//vuvod stroki
-	print_by_pages(text, str_len, kol_str, comlen);	
-	return 0;
-}
-
+//===============================================================================================//
 
 //int main(int argc, char* argv[]) {
 //	size_t len = 0;
