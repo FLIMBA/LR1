@@ -47,6 +47,9 @@ int main(int argc, char* argv[])
 	scanf_s("%d", &word_l);
 	printf("\nМаксимальна длинна слова: %d \n", word_l);
 	char text[1000], q[100], * p;
+	for (int i = 0; i< 100; i++){
+		q[i] = '\0';
+	}
 	int i, len = 0, comlen = 0, k;
 	// ВВОД ТЕКСТА В МАССИВ  text С КЛАВИАТУРЫ :
 	// устанавливаем указатель p на начало массива text
@@ -65,6 +68,9 @@ int main(int argc, char* argv[])
 		strcpy(p, q); 	// копирование в text
 		len = strlen(q);	// определение длины строки
 		comlen += len;	// общая длина текста
+		for (int h = 0; h < 100; h++){
+			q[h] = '\0';
+		}
 	}
 
 	// for (p = text, k = 0; q[0] != '#' && q[1] != '\n'; p = p + len + 1, k++)
