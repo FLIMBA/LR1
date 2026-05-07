@@ -36,16 +36,21 @@ const int DLINA = 1000;
 char s[DLINA];
 int Klow = 0;
 int word_l = 0;
-int str_len = 8; 
-int kol_str = 3;
+int str_len = 0; 
+int kol_str = 0;
 
 
 int main(int argc, char* argv[])
 {
 	setlocale(0, "Russian");
-	printf("Введите максимальную длинну слова: \t");
+	printf("Введите число строк на одной странице: \t");
+	scanf_s("%d", &kol_str);
+	printf("Введите длину строки: \t");
+	scanf_s("%d", &str_len);
+	//
+	printf("Введите максимальную длину слова: \t");
 	scanf_s("%d", &word_l);
-	printf("\nМаксимальна длинна слова: %d \n", word_l);
+	printf("\nМаксимальна длина слова: %d \n", word_l);
 	char text[1000], q[100], * p;
 	for (int i = 0; i< 100; i++){
 		q[i] = '\0';
