@@ -52,3 +52,26 @@ void print_table(car** db, int count) {
     printf("+-------------------+-------------------+-------------------+----------+----------+\n");
     printf("Vsego mashin: %d\n\n", count);
 }
+
+void free_all_cars(car** db, int count) {
+    if (!db) return;
+    
+    for (int i = 0; i < count; i++) {
+        if (db[i]) {
+            // Освобождаем строки
+            free(db[i]->brand);
+            free(db[i]->owner_last);
+            free(db[i]->owner_first);
+            
+            // Зануляем указатели (защита от висячих указателей)
+            db[i]->brand = NULL;
+            db[i]->owner_last = NULL;
+            db[i]->owner_first = NULL;
+            
+            // Освобождаем структуру
+            free(db[i]);
+            db[i] = NULL;
+        }
+    }
+    free(db);
+}

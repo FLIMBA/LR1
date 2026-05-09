@@ -60,6 +60,9 @@ int main(int argc, char* argv[]){
                 
             case 5:
                 printf("\nVuhod iz programmu...\n");
+                free_all_cars(database, size);
+                database = NULL;
+                size = 0;
                 break;
                 
             default:
