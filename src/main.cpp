@@ -29,11 +29,44 @@ using namespace std;
 // Ctrl + .
 
 int main(int argc, char* argv[]){
+
     setlocale(LC_ALL, "Russian");
     system("chcp 1251");
+
     car** database = NULL;  // указатель на массив указателей на Car
     int size = 0;           // сколько сейчас машин
-    add_car(&database, &size);
+    int choice;             // выбор пользователя
+    //add_car(&database, &size);
+    //print_table(database, size);
+     do {
+        print_menu();
+        scanf("%d", &choice);
+        
+        switch(choice) {
+            case 1:
+                clear_console();
+                printf("=== DOBAVLENIE NOVOY MASHINU ===\n");
+                add_car(&database, &size);
+                printf("\n+! Mashuna dobavlena!\n");
+                wait_for_key();
+                break;
+                
+            case 2:
+                clear_console();
+                printf("=== СSPISOK VSEH MASHIN ===\n");
+                print_table(database, size);
+                wait_for_key();
+                break;
+                
+            case 5:
+                printf("\nVuhod iz programmu...\n");
+                break;
+                
+            default:
+                printf("Nevernuy vubor!\n");
+                wait_for_key();
+        }
+    } while (choice != 5);
     system("pause");
     return 0;
 }

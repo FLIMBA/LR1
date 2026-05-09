@@ -10,5 +10,6 @@ typedef struct{
 } car;
 
 void add_car(car*** db, int* count);
+void print_table(car** db, int count);
 
 #endif
