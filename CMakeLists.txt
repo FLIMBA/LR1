@@ -11,7 +11,9 @@ VERSION 0.0.1
 add_executable(main 
     src/main.cpp
     src/stroki.cpp
+    src/console.cpp
     inc/stroki.h
+    inc/console.h
 )
 target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 #message("РОМУ 67  --> ${CMAKE_CURRENT_SOURCE_DIR}")
