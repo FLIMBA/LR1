@@ -36,6 +36,8 @@ int main(int argc, char* argv[]){
     car** database = NULL;  // указатель на массив указателей на Car
     int size = 0;           // сколько сейчас машин
     int choice;             // выбор пользователя
+    int probeg = 0;
+    char buffer[256];
     //add_car(&database, &size);
     //print_table(database, size);
      do {
@@ -53,11 +55,27 @@ int main(int argc, char* argv[]){
                 
             case 2:
                 clear_console();
-                printf("=== СSPISOK VSEH MASHIN ===\n");
+                printf("=== SPISOK VSEH MASHIN ===\n");
                 print_table(database, size);
                 wait_for_key();
                 break;
-                
+
+            case 3:
+                clear_console();
+                printf("=== NAYTI PO MARKE ===\n");
+                printf("Vvedite marku avtomobilya: ");
+                scanf("%255s", buffer);
+                find_by_brand(database, size, buffer);
+                wait_for_key();
+                break;
+            case 4:
+                clear_console();
+                printf("=== Nayti po probegu ( > zadan.) ===\n");
+                printf("Vvedite probeg avtomobilya: ");
+                scanf("%d", &probeg);
+                find_by_mileage(database, size, probeg);
+                wait_for_key();
+                break;                 
             case 5:
                 printf("\nVuhod iz programmu...\n");
                 free_all_cars(database, size);
