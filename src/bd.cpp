@@ -92,9 +92,9 @@ void find_by_brand(car** db, int count, const char* target_brand) {
     
     // 3. Вывод результата
     if (found_count == 0) {
-        printf("Машины марки '%s' не найдены.\n", target_brand);
+        printf("Mashinu marki '%s' ne naydenu.\n", target_brand);
     } else {
-        printf("Найдено машин: %d\n", found_count);
+        printf("Naydeno mashin: %d\n", found_count);
         print_table(results, found_count);  // переиспользуем функцию!
     }
     
@@ -132,7 +132,7 @@ void find_by_mileage(car** db, int count, int min_mileage) {
         }
     }
     if (found == 0) {
-        printf("Нет машин с пробегом больше %d\n", min_mileage);
+        printf("Net mashin s probegom bolshe %d\n", min_mileage);
         free(results);
         return;
     }

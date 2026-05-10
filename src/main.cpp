@@ -30,7 +30,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    setlocale(LC_ALL, "Russian");
+    //setlocale(LC_ALL, "Russian");
     system("chcp 1251");
 
     car** database = NULL;  // указатель на массив указателей на Car
